@@ -18,4 +18,4 @@ for i in t_html:
     if soup.find('tr')
     table = soup.find_all('tr')
     for j in table:
-        print (j)
+        print (j.get_text())
