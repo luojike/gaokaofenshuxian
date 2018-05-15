@@ -45,11 +45,12 @@ for i,j in zip(urls, filenames):
         print("\nFetching web page at: " + i + "\n")
         #html=urlopen(i)
         r = requests.get(i)
-        charset = getCharset(r.content)
-        print( "\nWeb page encoding is: " + charset + "\n" )
-        r.encoding = charset
-        soup=BeautifulSoup(r.content, features = 'lxml') # after using r.content instead of r.text, encoding of txt file is correct
-                                                        # however, I don't know why
+        #charset = getCharset(r.content)
+        #print( "\nWeb page encoding is: " + charset + "\n" )
+        #r.encoding = charset
+        # After using r.content instead of r.text, encoding of txt file is correct
+        # It seems that beautifulsoup is smarter than requests to deal with encoding
+        soup=BeautifulSoup(r.content, features = 'lxml') 
         if soup.find('tr'):
             table = soup.find_all('tr')
             print("\nWriting to file: " + j + "\n")
